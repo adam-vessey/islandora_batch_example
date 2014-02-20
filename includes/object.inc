@@ -1,6 +1,6 @@
 <?php
 
-RSSBatchObject extends IslandoraBatchObject {
+class RSSBatchObject extends IslandoraBatchObject {
   protected $rss_item_xml;
 
   public function __construct(IslandoraTuque $connection, SimpleXMLElement $rss_item) {
@@ -28,7 +28,7 @@ RSSBatchObject extends IslandoraBatchObject {
     // Typically, the MODS would also be transformed to DC and added, but
     // we're skipping this, due to the simple data.
     $mods = $this->constructDatastream('MODS', 'M');
-    $mods->label = $title
+    $mods->label = $title;
     $mods->mimetype = 'text/xml';
     $mods->content = <<<EOQ
 <mods xmlns='http://www.loc.gov/mods/v3'>

@@ -1,14 +1,11 @@
 <?php
 
-RSSBatchPreprocessor extends IslandoraBatchPreprocessor {
+class RSSBatchPreprocessor extends IslandoraBatchPreprocessor {
   public function preprocess() {
-    // Load up our RSS.
-    $rss = simplexml_load_file('rss.xml');
+    $mod_path = drupal_get_path('module', 'islandora_batch_example');
 
-    // Grab a Tuque connection to reuse. NOTE: Because this is connected to the
-    // current user, we have a side effect that the object's owner will be set
-    // to the current user.
-    $tuque = islandora_get_tuque_connection();
+    // Load up our RSS.
+    $rss = simplexml_load_file("$mod_path/rss.xml");
 
     // Accumulate a list of the objects added to the queue...
     $added = array();
@@ -16,7 +13,7 @@ RSSBatchPreprocessor extends IslandoraBatchPreprocessor {
     // Now, we iterate over each item in the RSS...
     foreach ($rss->xpath('/rss/channel/item') as $item) {
       // ... instanciate our object we started defining above...
-      $batch_object = new RSSBatchObject($tuque, $item);
+      $batch_object = new RSSBatchObject($this->connection, $item);
 
       // ... and add throw the instances into the queue.
       $this->addToDatabase($batch_object);

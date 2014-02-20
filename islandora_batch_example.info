@@ -1,0 +1,9 @@
+name = Islandora Batch Example
+description = "A sample implementation of a batch using the islandora_batch framework."
+package = Islandora
+dependencies[] = islandora
+dependencies[] = islandora_batch
+version = 7.x-dev
+core = 7.x
+files[] = includes/preprocessor.inc
+files[] = includes/object.inc

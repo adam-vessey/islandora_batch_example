@@ -7,10 +7,11 @@ A simpler case for an ingest might be to take an RSS feed and create objects for
 * Write preprocessor and object classes, such that:
     * The preprocessor breaks up the objects into in parts which the "object"
       class can work on
-    * The object class performs minimal processing during instantiation, and
-      has a `batchProcess()` method which does what little heavy lifting there
-      might be (excluding derivatives, which should be generated via
-      `hook_islandora_derivative()`.
+    * The object class takes what the preprocessor gives it and performs
+      minimal processing during instantiation, and has a `batchProcess()`
+      method which does what little heavy lifting there might be (excluding
+      derivatives, which should be generated via
+      `hook_islandora_derivative()`).
 
 ### Usage of this module
 
